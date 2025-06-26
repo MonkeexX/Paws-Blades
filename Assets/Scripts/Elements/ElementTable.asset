@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1416a1f9d3ab646a7befc8e8b37dbe, type: 3}
+  m_Name: ElementTable
+  m_EditorClassIdentifier: 
+  reload: 0
+  elementGraph: {fileID: 4900000, guid: 380bd945ab8b0584e9415f9677934802, type: 3}
+  elements:
+  - id: 0
+    name: FIRE
+    strengths: 01000000
+    weaknesses: 
+  - id: 0
+    name: GRASS
+    strengths: 02000000
+    weaknesses: 
+  - id: 0
+    name: WATER
+    strengths: 00000000
+    weaknesses: 
