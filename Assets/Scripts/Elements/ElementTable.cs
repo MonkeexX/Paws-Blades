@@ -1,60 +1,50 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public struct Element
 {
-    public int id;
-    public string name;
-    public List<int> strengths;
-    public List<int> weaknesses;
+    public string Name;
+    public List<string> strengths;
+    public List<string> weaknesses;
 
-    public Element(int id, string name)
+    public Element(string name)
     {
-        this.id = id;
-        this.name = name;
-        this.strengths = new List<int>();
-        this.weaknesses = new List<int>();
+        this.Name = name;
+        this.strengths = new List<string>();
+        this.weaknesses = new List<string>();
     }
 }
 
 [CreateAssetMenu(fileName = "ElementTable", menuName = "Scriptable Objects/ElementTable")]
 public class ElementTable : ScriptableObject
 {
-    public TextAsset elementGraph;
-    public List<Element> elements;
+    public TextArea Graph;
+    private Dictionary<string, int> ids = new Dictionary<string, int>();
+    public List<Element> elements = new List<Element>();
 
     public void OnValidate()
     {
-        string[] graphParts = elementGraph.text.Split(' ');
+        ids = new Dictionary<string, int>();
         elements = new List<Element>();
 
-        string nodes = graphParts[4];
-        string edges = graphParts[5];
+        if (Graph.longString.Length == 0) return;
 
-        Debug.Assert(nodes.StartsWith("nodes"), "Bad element graph format!");
-        Debug.Assert(edges.StartsWith("edges"), "Bad element graph format!");
-
-        string[] nodeParts = nodes.Split(':');
-
-        string regex = @"([A-Z])+";
-
-        foreach (System.Text.RegularExpressions.Match m in System.Text.RegularExpressions.Regex.Matches(nodes, regex))
+        foreach(string line in Graph.longString.Split('\n'))
         {
-            elements.Add(new Element(0, m.Groups[0].Value));
-        }
-
-        regex = @"(\d)+";
-
-        var matches = System.Text.RegularExpressions.Regex.Matches(edges, regex);
-
-        for (int i = 0; i + 1 < matches.Count; i += 2)
-        {
-            int part1 = int.Parse(matches[i].Groups[0].Value);
-            int part2 = int.Parse(matches[i+1].Groups[0].Value);
-
-            elements[part1].strengths.Add(part2);
+            string[] words = line.Split(' ');
+            if (words.Length == 1)
+            {
+                ids.Add(words[0], ids.Count);
+                elements.Add(new Element(words[0]));
+            }
+            else if (words.Length == 2)
+            { 
+                elements[ids[words[0]]].strengths.Add(words[1]);
+                elements[ids[words[1]]].weaknesses.Add(words[0]);
+            }
         }
     }
 

@@ -12,18 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1416a1f9d3ab646a7befc8e8b37dbe, type: 3}
   m_Name: ElementTable
   m_EditorClassIdentifier: 
-  reload: 0
-  elementGraph: {fileID: 4900000, guid: 380bd945ab8b0584e9415f9677934802, type: 3}
+  Graph:
+    longString: 'FIRE
+
+      GRASS
+
+      WATER
+
+      FIRE GRASS
+
+      GRASS WATER'
   elements:
   - id: 0
     name: FIRE
-    strengths: 01000000
-    weaknesses: 
+    strengths:
+    - GRASS
+    weaknesses: []
   - id: 0
     name: GRASS
-    strengths: 02000000
-    weaknesses: 
+    strengths:
+    - WATER
+    weaknesses:
+    - FIRE
   - id: 0
     name: WATER
-    strengths: 00000000
-    weaknesses: 
+    strengths: []
+    weaknesses:
+    - GRASS
