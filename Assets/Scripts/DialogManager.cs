@@ -9,13 +9,14 @@ using UnityEngine.Events;
 
 namespace Dialog
 {
+    [Serializable]
     public struct Option
     {
-        public string text {  get; private set; }
-        private int nextDialog;
-        public Action OnSelect;
+        [SerializeField] public string text;
+        [SerializeField] public int nextDialog;
+        [SerializeField] public string OnSelect;
 
-        public Option(string text, int nextDialog, Action OnSelect)
+        public Option(string text, int nextDialog, string OnSelect)
         {
             this.text = text;
             this.nextDialog = nextDialog;
@@ -24,10 +25,11 @@ namespace Dialog
 
         public int Select()
         {
-            OnSelect();
+            DialogFunctions.Functions[OnSelect]();
             return nextDialog;
         }
     }
+    [Serializable]
     public struct Dialog
     {
         public string text;
@@ -47,40 +49,11 @@ namespace Dialog
             { "F2", delegate () { Debug.Log("F2"); } }
         };
     }
-
-    public static class DialogParser
-    {
-        public static Dictionary<int, Dialog> GetDialogs(TextAsset asset)
-        {
-            Dictionary<int, Dialog> parsedDialogs = new Dictionary<int, Dialog>();
-
-            string buffer = asset.text;
-            string[] lines = buffer.Split('\n');
-            for (int i = 1; i < lines.Length; ++i)
-            {
-                string[] values = lines[i].Split('\t');
-                int id = int.Parse(values[0]);
-                string text = values[1];
-                List<Option> options = new List<Option>();
-                for(int j = 2; j + 2 < values.Length; j += 3)
-                {
-                    string optionText = values[j];
-                    if (optionText.Length == 0) continue; //Avoid null options
-                    int nextDialogue = int.Parse(values[j + 1]);
-                    Action OnSelect = DialogFunctions.Functions[values[j + 2].TrimEnd('\r')];
-                    options.Add(new Option(optionText, nextDialogue, OnSelect));
-                }
-                parsedDialogs.Add(id, new Dialog(text, options));
-            }
-            return parsedDialogs;
-        }
-    }
 }
 
 public class DialogManager : MonoBehaviour
 {
-    [SerializeField] private TextAsset asset;
-    private Dictionary<int, Dialog.Dialog> dialogs;
+    [SerializeField] public DialogContainer dialogContainer;
     private Dialog.Dialog curDialog;
 
     [SerializeField] private TMP_Text dialogText;
@@ -88,8 +61,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TMP_Text option2Text;
     private void Start()
     {
-        dialogs = Dialog.DialogParser.GetDialogs(asset);
-        curDialog = dialogs[0];
+        Debug.Log(dialogContainer.dialogs.Count);
+        curDialog = dialogContainer.dialogs[0];
         dialogText.text = curDialog.text;
         option1Text.text = curDialog.options[0].text;
         option2Text.text = curDialog.options[1].text;
@@ -98,11 +71,11 @@ public class DialogManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0)) {
-            curDialog = dialogs[curDialog.options[0].Select()];
+            curDialog = dialogContainer.dialogs[curDialog.options[0].Select()];
             dialogText.text = curDialog.text;
         } else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            curDialog = dialogs[curDialog.options[1].Select()];
+            curDialog = dialogContainer.dialogs[curDialog.options[1].Select()];
             dialogText.text = curDialog.text;
         }
     }
