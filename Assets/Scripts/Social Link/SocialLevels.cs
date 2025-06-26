@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 namespace SocialLink
 {
     public enum SocialLevels : int

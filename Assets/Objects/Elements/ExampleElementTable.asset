@@ -10,32 +10,34 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb1416a1f9d3ab646a7befc8e8b37dbe, type: 3}
-  m_Name: ElementTable
+  m_Name: ExampleElementTable
   m_EditorClassIdentifier: 
   Graph:
     longString: 'FIRE
 
-      GRASS
-
       WATER
+
+      GRASS
 
       FIRE GRASS
 
-      GRASS WATER'
+      GRASS WATER
+
+      WATER
+      FIRE'
   elements:
-  - id: 0
-    name: FIRE
+  - Name: FIRE
     strengths:
     - GRASS
-    weaknesses: []
-  - id: 0
-    name: GRASS
+    weaknesses:
+    - WATER
+  - Name: WATER
+    strengths:
+    - FIRE
+    weaknesses:
+    - GRASS
+  - Name: GRASS
     strengths:
     - WATER
     weaknesses:
     - FIRE
-  - id: 0
-    name: WATER
-    strengths: []
-    weaknesses:
-    - GRASS

@@ -1,34 +1,36 @@
 using System.Collections.Generic;
-using SocialLink;
 using UnityEngine;
 
-public class SocialLinkManager : MonoBehaviour
+namespace SocialLink
 {
-    public CharacterFileContainer characterFileContainer;
-    public Dictionary<string, CharacterFile> files = new Dictionary<string, CharacterFile>();
-
-    private void Start()
+    public class SocialLinkManager : MonoBehaviour
     {
-        foreach (CharacterFile file in characterFileContainer.CharacterFiles)
+        public CharacterFileContainer characterFileContainer;
+        public Dictionary<string, CharacterFile> files = new Dictionary<string, CharacterFile>();
+
+        private void Start()
         {
-            files.Add(file.Name, new CharacterFile(file));
+            foreach (CharacterFile file in characterFileContainer.CharacterFiles)
+            {
+                files.Add(file.Name, new CharacterFile(file));
+            }
         }
-    }
 
-    private void Update()
-    {
+        private void Update()
+        {
 
-    }
+        }
 
-    public void AddXP(string name, int amount)
-    {
-        Debug.Assert(files.ContainsKey(name), "Character doesn't exist!");
-        files[name].ModifyXP(amount);
-    }
+        public void AddXP(string name, int amount)
+        {
+            Debug.Assert(files.ContainsKey(name), "Character doesn't exist!");
+            files[name].ModifyXP(amount);
+        }
 
-    public void RemoveXP(string name, int amount)
-    {
-        Debug.Assert(files.ContainsKey(name), "Character doesn't exist!");
-        files[name].ModifyXP(-amount);
+        public void RemoveXP(string name, int amount)
+        {
+            Debug.Assert(files.ContainsKey(name), "Character doesn't exist!");
+            files[name].ModifyXP(-amount);
+        }
     }
 }

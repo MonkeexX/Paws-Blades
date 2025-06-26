@@ -1,15 +1,17 @@
-using SocialLink;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class CharacterFileContainer : ScriptableObject
+namespace SocialLink
 {
-    public List<CharacterFile> CharacterFiles;
-
-    public CharacterFileContainer()
+    [Serializable]
+    public class CharacterFileContainer : ScriptableObject
     {
-        CharacterFiles = new List<CharacterFile>();
+        public List<CharacterFile> CharacterFiles;
+
+        public CharacterFileContainer()
+        {
+            CharacterFiles = new List<CharacterFile>();
+        }
     }
 }
