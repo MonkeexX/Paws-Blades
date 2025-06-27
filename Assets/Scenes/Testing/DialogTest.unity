@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6220110561636f2499d93b1cc3c3d469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogContainer: {fileID: -3987768055726758047, guid: f44e13ca590fd4043b08a164e3974cb1, type: 3}
+  dialogContainer: {fileID: 8522888622835614572, guid: 19176e9755233f241857a1fa606fe675, type: 3}
   dialogText: {fileID: 1923821633}
   option1Text: {fileID: 2139329190}
   option2Text: {fileID: 1825950687}

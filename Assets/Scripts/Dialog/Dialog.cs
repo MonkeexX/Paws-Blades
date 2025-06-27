@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Diagnostics.Contracts;
 
 namespace Dialog
 {
@@ -20,7 +21,12 @@ namespace Dialog
 
         public int Select()
         {
-            DialogFunctions.Functions[OnSelect]();
+            Debug.Log(this.OnSelect);
+            foreach (string fn in this.OnSelect.Split(';'))
+            {
+                string[] parts = fn.Split(' ');
+                DialogFunctions.Functions[parts[0]](parts[1..]);
+            }
             return nextDialog;
         }
     }
