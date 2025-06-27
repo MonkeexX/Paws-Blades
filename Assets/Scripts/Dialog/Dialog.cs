@@ -24,7 +24,7 @@ namespace Dialog
             Debug.Log(this.OnSelect);
             foreach (string fn in this.OnSelect.Split(';'))
             {
-                string[] parts = fn.Split(' ');
+                string[] parts = fn.Replace(" ", "").Split(',');
                 DialogFunctions.Functions[parts[0]](parts[1..]);
             }
             return nextDialog;
