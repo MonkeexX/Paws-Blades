@@ -6,6 +6,10 @@ namespace Dialog
 {
     public class DialogManager : MonoBehaviour
     {
+
+        public static DialogManager Instance { get; private set; }
+
+        [SerializeField] private DialogUIHandler UIHandler;
         [SerializeField] public DialogContainer dialogContainer;
         private Dialog curDialog;
 
@@ -14,11 +18,13 @@ namespace Dialog
         [SerializeField] private TMP_Text option2Text;
         private void Start()
         {
-            Debug.Log(dialogContainer.dialogs.Count);
+            if (Instance != null) Destroy(this.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            UIHandler.Init();
             curDialog = dialogContainer.dialogs[0];
-            dialogText.text = curDialog.text;
-            option1Text.text = curDialog.options[0].text;
-            option2Text.text = curDialog.options[1].text;
+            UIHandler.DisplayDialog(curDialog);
         }
 
         private void Update()
@@ -33,6 +39,12 @@ namespace Dialog
                 curDialog = dialogContainer.dialogs[curDialog.options[1].Select()];
                 dialogText.text = curDialog.text;
             }
+        }
+
+        public void Select(int id)
+        {
+            curDialog = dialogContainer.dialogs[curDialog.options[id].Select()];
+            UIHandler.DisplayDialog(curDialog);
         }
     }
 }

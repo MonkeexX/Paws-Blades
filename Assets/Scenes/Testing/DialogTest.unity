@@ -319,7 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6220110561636f2499d93b1cc3c3d469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogContainer: {fileID: 1126433809045442039, guid: d4a349f0cf5e00742bec92466986fb23, type: 3}
+  UIHandler: {fileID: 11400000, guid: 5dcc4002facce21499d0860925a9359f, type: 2}
+  dialogContainer: {fileID: 5554235845522382598, guid: 8b22191c646711946886b679d8d6160b, type: 3}
   dialogText: {fileID: 1923821633}
   option1Text: {fileID: 2139329190}
   option2Text: {fileID: 1825950687}
@@ -869,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2053767111
 MonoBehaviour:
   m_ObjectHideFlags: 0
