@@ -14,6 +14,7 @@ namespace SocialLink
         {
             if (Instance != null)
                 Destroy(this.gameObject);
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
 
             foreach (CharacterFile file in characterFileContainer.CharacterFiles)

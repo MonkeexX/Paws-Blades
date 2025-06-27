@@ -12,8 +12,8 @@ namespace Dialog
             { "F1", delegate (string[] input) { Debug.Log("F1"); } },
             { "F2", delegate (string[] input) { Debug.Log("F2"); } },
             { "TP", delegate (string[] input) { LevelManager.Load(input[0]); } },
-            { "ADDXP", delegate (string[] input) { throw new NotImplementedException(); } },
-            { "REMXP", delegate (string[] input) { throw new NotImplementedException(); } }
+            { "ADDXP", delegate (string[] input) { SocialLink.SocialLinkManager.Instance.AddXP(input[0], int.Parse(input[1])); } },
+            { "REMXP", delegate (string[] input) { SocialLink.SocialLinkManager.Instance.RemoveXP(input[0], int.Parse(input[1])); } }
         };
     }
 }
