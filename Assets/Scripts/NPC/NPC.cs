@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class NPC : MonoBehaviour
 {
     [SerializeField] private InputAction interact;
     private CapsuleCollider collider;
+    [SerializeField] private UnityEvent onInteract;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,5 +42,6 @@ public class NPC : MonoBehaviour
     {
         //Only interact when in radius
         Debug.Log("Interacted!");
+        onInteract.Invoke();
     }
 }
