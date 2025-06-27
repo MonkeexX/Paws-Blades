@@ -10,12 +10,12 @@ namespace Dialog
         [SerializeField] private Object[] instantiatedUIs;
         [SerializeField] private Object currentUI;
 
-        public void Init()
+        public void Init(Transform transform)
         {
             instantiatedUIs = new GameObject[UIs.Length];
             for (int i = 0; i < UIs.Length; ++i)
             {
-                instantiatedUIs[i] = Instantiate(UIs[i]);
+                instantiatedUIs[i] = Instantiate(UIs[i], transform);
                 (instantiatedUIs[i] as GameObject).SetActive(false);
             }
         }

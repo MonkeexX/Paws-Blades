@@ -22,28 +22,19 @@ namespace Dialog
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
 
-            UIHandler.Init();
-            curDialog = dialogContainer.dialogs[0];
-            UIHandler.DisplayDialog(curDialog);
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                curDialog = dialogContainer.dialogs[curDialog.options[0].Select()];
-                dialogText.text = curDialog.text;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                curDialog = dialogContainer.dialogs[curDialog.options[1].Select()];
-                dialogText.text = curDialog.text;
-            }
+            UIHandler.Init(this.transform);
         }
 
         public void Select(int id)
         {
             curDialog = dialogContainer.dialogs[curDialog.options[id].Select()];
+            UIHandler.DisplayDialog(curDialog);
+        }
+
+        public void StartDialog(DialogContainer dialog)
+        {
+            dialogContainer = dialog;
+            curDialog = dialogContainer.dialogs[0];
             UIHandler.DisplayDialog(curDialog);
         }
     }
