@@ -25,6 +25,12 @@ namespace Tools
                 return;
             }
 
+            if(assetPath.Contains("/Combat Stats/"))
+            {
+                importer.option = TSVImporter.ImportOption.COMBATSTATS;
+                return;
+            }
+
             bool option = false;
             int selectable = 0;
             do

@@ -3,13 +3,16 @@ using UnityEditor.AssetImporters;
 using UnityEngine;
 using SocialLink;
 using Dialog;
+using Combat;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace Tools
 {
     [ScriptedImporter(1, "tsv")]
     public class TSVImporter : ScriptedImporter
     {
-        public enum ImportOption { DIALOG, CHARFILES }
+        public enum ImportOption { DIALOG, CHARFILES, COMBATSTATS }
         public ImportOption option = ImportOption.DIALOG;
 
         public override void OnImportAsset(AssetImportContext ctx)
@@ -25,6 +28,12 @@ namespace Tools
             else if (option == ImportOption.CHARFILES)
             {
                 CharacterFileContainer container = CharacterFilesImport.ImportCharFiles(text);
+                ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
+                ctx.SetMainObject(container);
+            }
+            else if(option == ImportOption.COMBATSTATS)
+            {
+                CombatStatsContainer container = CombatStatsImport.ImportStats(text);
                 ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
                 ctx.SetMainObject(container);
             }
