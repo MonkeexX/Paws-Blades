@@ -14,5 +14,11 @@ namespace Dialog
 
             transform.GetChild(currentUI).GetComponent<DialogUI>().DisplayDialog(dialog);
         }
+
+        public void EndDialog()
+        {
+            transform.GetChild(currentUI).gameObject.SetActive(false);
+            currentUI = -1;
+        }
     }
 }

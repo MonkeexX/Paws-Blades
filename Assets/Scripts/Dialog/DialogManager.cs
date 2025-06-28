@@ -11,7 +11,7 @@ namespace Dialog
 
         [SerializeField] private DialogUIHandler UIHandler;
         [SerializeField] public DialogContainer dialogContainer;
-        private Dialog curDialog;
+        private Dialog? curDialog;
 
         [SerializeField] private TMP_Text dialogText;
         [SerializeField] private TMP_Text option1Text;
@@ -25,15 +25,24 @@ namespace Dialog
 
         public void Select(int id)
         {
-            curDialog = dialogContainer.dialogs[curDialog.options[id].Select()];
-            UIHandler.DisplayDialog(curDialog);
+            int nextID = curDialog.Value.options[id].Select();
+            if (nextID == -1) { EndDialog(); return; }
+            curDialog = dialogContainer.dialogs[nextID];
+            UIHandler.DisplayDialog(curDialog.Value);
         }
 
         public void StartDialog(DialogContainer dialog)
         {
             dialogContainer = dialog;
             curDialog = dialogContainer.dialogs[0];
-            UIHandler.DisplayDialog(curDialog);
+            UIHandler.DisplayDialog(curDialog.Value);
+        }
+
+        public void EndDialog()
+        {
+            dialogContainer = null;
+            curDialog = null;
+            UIHandler.EndDialog();
         }
     }
 }
