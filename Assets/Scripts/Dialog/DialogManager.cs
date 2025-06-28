@@ -9,7 +9,7 @@ namespace Dialog
 
         public static DialogManager Instance { get; private set; }
 
-        [SerializeField] private DialogUIHandler UIHandler;
+        [SerializeField] private DialogMenuManager UIHandler;
         [SerializeField] public DialogContainer dialogContainer;
         private Dialog? curDialog;
 
@@ -28,6 +28,8 @@ namespace Dialog
             int nextID = curDialog.Value.options[id].Select();
             if (nextID == -1) { EndDialog(); return; }
             curDialog = dialogContainer.dialogs[nextID];
+
+            UIHandler.OpenSubMenu(curDialog.Value.options.Count);
             UIHandler.DisplayDialog(curDialog.Value);
         }
 
@@ -35,6 +37,8 @@ namespace Dialog
         {
             dialogContainer = dialog;
             curDialog = dialogContainer.dialogs[0];
+
+            UIHandler.OpenSubMenu(curDialog.Value.options.Count);
             UIHandler.DisplayDialog(curDialog.Value);
         }
 
@@ -42,7 +46,8 @@ namespace Dialog
         {
             dialogContainer = null;
             curDialog = null;
-            UIHandler.EndDialog();
+
+            UIHandler.CloseMenu();
         }
     }
 }
