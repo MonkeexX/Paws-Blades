@@ -13,7 +13,7 @@ public class NPC : MonoBehaviour
     {
         collider = GetComponent<CapsuleCollider>();
         interact.started += OnInteract;
-        interact.Disable();
+        interact.Enable();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class NPC : MonoBehaviour
         //Check for player
         //if (!collision.gameObject.TryGetComponent<PlayerScript>(out PlayerScript player)) return;
         //Show interaction icon
-        interact.Enable();
+        interact.Disable();
     }
 
     private void OnCollisionExit(Collision collision)

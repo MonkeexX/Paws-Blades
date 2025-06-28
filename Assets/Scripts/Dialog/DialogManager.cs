@@ -21,8 +21,6 @@ namespace Dialog
             if (Instance != null) Destroy(this.gameObject);
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-
-            UIHandler.Init(this.transform);
         }
 
         public void Select(int id)
