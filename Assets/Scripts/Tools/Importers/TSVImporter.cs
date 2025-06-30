@@ -27,28 +27,9 @@ namespace Tools
             string text = File.ReadAllText(ctx.assetPath);
 
             TSVContainer container = ScriptableObject.CreateInstance(optionTypes[option]) as TSVContainer;
-            container.Parse(text);
-            ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
-            ctx.SetMainObject(container);
-
-            //if (option == ImportOption.DIALOG)
-            //{
-            //    DialogContainer container = DialogImport.ImportDialog(text);
-            //    ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
-            //    ctx.SetMainObject(container);
-            //}
-            //else if (option == ImportOption.CHARFILES)
-            //{
-            //    CharacterFileContainer container = CharacterFilesImport.ImportCharFiles(text);
-            //    ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
-            //    ctx.SetMainObject(container);
-            //}
-            //else if(option == ImportOption.COMBATSTATS)
-            //{
-            //    CombatStatsContainer container = CombatStatsImport.ImportStats(text);
-            //    ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), container);
-            //    ctx.SetMainObject(container);
-            //}
+            container.Import(text, ctx);
+            //ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(assetPath), container);
+            //ctx.SetMainObject(container);
         }
     }
 }

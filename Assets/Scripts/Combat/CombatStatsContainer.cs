@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
 namespace Combat {
@@ -8,7 +10,7 @@ namespace Combat {
     {
         [SerializeField] public List<CombatStats> combatStats = new List<CombatStats>();
 
-        public override void Parse(string rawText)
+        public override void Import(string rawText, AssetImportContext ctx)
         {
             string[] lines = rawText.Split('\n');
 
@@ -26,6 +28,8 @@ namespace Combat {
                 this.combatStats.Add(combatStats);
             }
             Debug.Assert(this.combatStats != null);
+            ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), this);
+            ctx.SetMainObject(this);
         }
     }
 }

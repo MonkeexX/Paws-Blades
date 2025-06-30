@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
 namespace SocialLink
@@ -9,7 +11,7 @@ namespace SocialLink
     {
         public List<CharacterFile> CharacterFiles = new List<CharacterFile>();
 
-        public override void Parse(string rawText)
+        public override void Import(string rawText, AssetImportContext ctx)
         {
             string[] lines = rawText.Split('\n');
             for (int i = 1; i < lines.Length; ++i)
@@ -25,9 +27,12 @@ namespace SocialLink
                     levelRequirements.Add(req);
                 }
                 CharacterFile file = new CharacterFile(Name, socialLevel, XP, levelRequirements);
+                file.name = Name;
                 this.CharacterFiles.Add(file);
+                ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), file);
             }
             Debug.Assert(this.CharacterFiles != null);
+            ctx.SetMainObject(CharacterFiles[0]);
         }
     }
 }

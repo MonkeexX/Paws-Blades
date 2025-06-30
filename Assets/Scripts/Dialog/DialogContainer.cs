@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
 namespace Dialog
@@ -10,7 +12,7 @@ namespace Dialog
         [SerializeField]
         public List<Dialog> dialogs = new List<Dialog>();
 
-        public override void Parse(string rawText)
+        public override void Import(string rawText, AssetImportContext ctx)
         {
             string[] lines = rawText.Split('\n');
             for (int i = 1; i < lines.Length; ++i)
@@ -30,6 +32,8 @@ namespace Dialog
                 }
                 this.dialogs.Add(new Dialog(text, options));
             }
+            ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), this);
+            ctx.SetMainObject(this);
         }
     }
 }

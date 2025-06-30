@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SocialLink
 {
     [Serializable]
-    public class CharacterFile
+    public class CharacterFile : ScriptableObject
     {
         public string Name; //Character name
         public SocialLevels socialLevel;
