@@ -31,6 +31,12 @@ namespace Tools
                 return;
             }
 
+            if(assetPath.Contains("/Spells/"))
+            {
+                importer.option = TSVImporter.ImportOption.SPELLS;
+                return;
+            }
+
             bool option = false;
             int selectable = 0;
             do
