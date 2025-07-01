@@ -3,16 +3,17 @@ using UnityEngine;
 
 namespace Dialog
 {
-    public class DialogMenu : MonoBehaviour
+    public class DialogMenu : Tools.Menu
     {
         [SerializeField] TMP_Text mainDialog;
         [SerializeField] TMP_Text[] options;
 
-        public void DisplayDialog(Dialog dialog)
+        public override void Display<T>(T toDisplay)
         {
-            mainDialog.text = dialog.text;
-            for (int i = 0; i < dialog.options.Count; i++)
-                options[i].text = dialog.options[i].text;
+            Dialog? dialog = toDisplay as Dialog?;
+            mainDialog.text = dialog.Value.text;
+            for (int i = 0; i < dialog.Value.options.Count; i++)
+                options[i].text = dialog.Value.options[i].text;
         }
 
         public void Select(int id) => DialogManager.Instance.Select(id);

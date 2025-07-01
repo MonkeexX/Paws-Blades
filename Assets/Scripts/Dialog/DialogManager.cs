@@ -1,4 +1,5 @@
 using TMPro;
+using Tools;
 using UnityEngine;
 
 
@@ -9,7 +10,7 @@ namespace Dialog
 
         public static DialogManager Instance { get; private set; }
 
-        [SerializeField] private DialogMenuManager UIHandler;
+        [SerializeField] private MenuManager UIHandler;
         [SerializeField] public DialogContainer dialogContainer;
         private Dialog? curDialog;
 
@@ -30,7 +31,7 @@ namespace Dialog
             curDialog = dialogContainer.dialogs[nextID];
 
             UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.DisplayDialog(curDialog.Value);
+            UIHandler.Display<Dialog, DialogMenu>(curDialog.Value);
         }
 
         public void StartDialog(DialogContainer dialog)
@@ -39,7 +40,7 @@ namespace Dialog
             curDialog = dialogContainer.dialogs[0];
 
             UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.DisplayDialog(curDialog.Value);
+            UIHandler.Display<Dialog, DialogMenu>(curDialog.Value);
         }
 
         public void EndDialog()
