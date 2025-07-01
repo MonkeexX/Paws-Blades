@@ -16,7 +16,7 @@ namespace Dialog
                 options[i].text = dialog.Value.options[i].text;
         }
 
-        public void Select(int id) => DialogManager.Instance.Select(id);
-        public void CloseDialog() => DialogManager.Instance.EndDialog();
+        public void Select(int id) => DialogManager.Select(id);
+        public void CloseDialog() => DialogManager.EndDialog();
     }
 }

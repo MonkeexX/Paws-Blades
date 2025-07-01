@@ -5,7 +5,20 @@ namespace Tools
 {
     public class MenuManager : MonoBehaviour
     {
+        public static MenuManager Instance { get; private set; }
+
         [SerializeField] protected int currentID = -1;
+
+        private void Start()
+        {
+            if (Instance != null)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         public void OpenSubMenu(int id)
         {

@@ -356,56 +356,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5881746442580699499, guid: 47376dbaa838add418e03bbf3dab68d6, type: 3}
   m_PrefabInstance: {fileID: 455407530}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &803912210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 803912212}
-  - component: {fileID: 803912211}
-  m_Layer: 0
-  m_Name: DialogManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &803912211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803912210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6220110561636f2499d93b1cc3c3d469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIHandler: {fileID: 1516479947}
-  dialogContainer: {fileID: 5554235845522382598, guid: 8b22191c646711946886b679d8d6160b, type: 3}
-  dialogText: {fileID: 0}
-  option1Text: {fileID: 0}
-  option2Text: {fileID: 0}
---- !u!4 &803912212
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803912210}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1516479946}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &805744164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -805,7 +755,7 @@ Transform:
   - {fileID: 1420979331}
   - {fileID: 805744165}
   - {fileID: 1889911931}
-  m_Father: {fileID: 803912212}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1516479947
 MonoBehaviour:
@@ -884,7 +834,7 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 803912211}
+      - m_Target: {fileID: 11400000, guid: 3a5a9abfbd8fe7340bdfe1aeb2957251, type: 2}
         m_TargetAssemblyTypeName: Dialog.DialogManager, Assembly-CSharp
         m_MethodName: StartDialog
         m_Mode: 2
@@ -969,6 +919,6 @@ SceneRoots:
   - {fileID: 160402871}
   - {fileID: 1447073425}
   - {fileID: 356593824}
-  - {fileID: 803912212}
+  - {fileID: 1516479946}
   - {fileID: 824013314}
   - {fileID: 1628005795}

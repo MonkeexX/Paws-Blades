@@ -5,50 +5,37 @@ using UnityEngine;
 
 namespace Dialog
 {
-    public class DialogManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "DialogManager", menuName = "Assets/Scriptable Objects/Dialog/DialogManager")]
+    public class DialogManager : ScriptableObject
     {
+        [SerializeField] public static DialogContainer dialogContainer;
+        private static Dialog? curDialog;
 
-        public static DialogManager Instance { get; private set; }
-
-        [SerializeField] private MenuManager UIHandler;
-        [SerializeField] public DialogContainer dialogContainer;
-        private Dialog? curDialog;
-
-        [SerializeField] private TMP_Text dialogText;
-        [SerializeField] private TMP_Text option1Text;
-        [SerializeField] private TMP_Text option2Text;
-        private void Start()
-        {
-            if (Instance != null) Destroy(this.gameObject);
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        public void Select(int id)
+        public static void Select(int id)
         {
             int nextID = curDialog.Value.options[id].Select();
             if (nextID == -1) { EndDialog(); return; }
             curDialog = dialogContainer.dialogs[nextID];
 
-            UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.Display<Dialog>(curDialog.Value);
+            MenuManager.Instance.OpenSubMenu(curDialog.Value.options.Count);
+            MenuManager.Instance.Display(curDialog.Value);
         }
 
-        public void StartDialog(DialogContainer dialog)
+        public static void StartDialog(DialogContainer dialog)
         {
             dialogContainer = dialog;
             curDialog = dialogContainer.dialogs[0];
 
-            UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.Display<Dialog>(curDialog.Value);
+            MenuManager.Instance.OpenSubMenu(curDialog.Value.options.Count);
+            MenuManager.Instance.Display(curDialog.Value);
         }
 
-        public void EndDialog()
+        public static void EndDialog()
         {
             dialogContainer = null;
             curDialog = null;
 
-            UIHandler.CloseMenu();
+            MenuManager.Instance.CloseMenu();
         }
     }
 }
