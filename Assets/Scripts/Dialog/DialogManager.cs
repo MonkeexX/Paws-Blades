@@ -31,7 +31,7 @@ namespace Dialog
             curDialog = dialogContainer.dialogs[nextID];
 
             UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.Display<Dialog, DialogMenu>(curDialog.Value);
+            UIHandler.Display<Dialog>(curDialog.Value);
         }
 
         public void StartDialog(DialogContainer dialog)
@@ -40,7 +40,7 @@ namespace Dialog
             curDialog = dialogContainer.dialogs[0];
 
             UIHandler.OpenSubMenu(curDialog.Value.options.Count);
-            UIHandler.Display<Dialog, DialogMenu>(curDialog.Value);
+            UIHandler.Display<Dialog>(curDialog.Value);
         }
 
         public void EndDialog()
