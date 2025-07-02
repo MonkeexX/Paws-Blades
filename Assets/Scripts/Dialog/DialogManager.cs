@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Dialog
 {
-    [CreateAssetMenu(fileName = "DialogManager", menuName = "Assets/Scriptable Objects/Dialog/DialogManager")]
+    [CreateAssetMenu(fileName = "DialogManager", menuName = "Scriptable Objects/Dialog/DialogManager")]
     public class DialogManager : ScriptableObject
     {
         [SerializeField] public static DialogContainer dialogContainer;

@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace Combat
 {
-    public class CombatMenu : MonoBehaviour
+    public class CombatMenu : Tools.Menu
     {
-        public void Display(CombatActor actor)
-        {
 
+        public override void Display<T>(T toDisplay)
+        {
+            Debug.Log("Display");
         }
     }
 }

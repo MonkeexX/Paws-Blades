@@ -9,7 +9,7 @@ namespace Tools
 
         [SerializeField] protected int currentID = -1;
 
-        private void Start()
+        private void Awake()
         {
             if (Instance != null)
             {
@@ -18,6 +18,7 @@ namespace Tools
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("Instance set");
         }
 
         public void OpenSubMenu(int id)
@@ -34,5 +35,7 @@ namespace Tools
             transform.GetChild(currentID).gameObject.SetActive(false);
             currentID = -1;
         }
+
+        public void Destroy() => Destroy(gameObject);
     }
 }

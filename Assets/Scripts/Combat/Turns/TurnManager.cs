@@ -3,35 +3,41 @@ using UnityEngine;
 
 namespace Combat
 {
-    public static class TurnManager
+    [CreateAssetMenu(fileName = "TurnManager", menuName = "Scriptable Objects/Combat/TurnManager")]
+    public class TurnManager : ScriptableObject
     {
-        public static bool isInCombat = false;
-        public static int activeActor = 0;
-        public static List<CombatActor> actorsInCombat = new List<CombatActor>();
+        public bool isInCombat = false;
+        public int activeActor = 0;
+        [SerializeReference] public List<CombatActor> actorsInCombat = new List<CombatActor>();
 
-        public static void EnterCombat()
+        public void EnterCombat()
         {
+            foreach (CombatActor actor in actorsInCombat) actor.StartCombat();
             activeActor = 0;
             isInCombat = true;
+            actorsInCombat[activeActor].PromptChoice();
         }
 
-        public static void AddCombatActor(CombatActor actor)
+        public void AddCombatActor(CombatActor actor)
         {
             actorsInCombat.Add(actor);
         }
 
-        public static void MakeTurn(CombatActor actor, CombatChoice choice)
+        public void MakeTurn(CombatChoice choice)
         {
-            if (!isInCombat || actor != actorsInCombat[activeActor]) return;
+            if (!isInCombat) return;
 
             choice.Choose();
 
             activeActor++;
             activeActor %= actorsInCombat.Count;
+
+            actorsInCombat[activeActor].PromptChoice();
         }
 
-        public static void ExitCombat()
+        public void ExitCombat()
         {
+            foreach (CombatActor actor in actorsInCombat) actor.FinishCombat();
             actorsInCombat.Clear();
             isInCombat = false;
         }

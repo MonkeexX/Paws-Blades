@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e473e75d6504674a9cc66702d080320, type: 3}
+  m_Name: PlayerActor
+  m_EditorClassIdentifier: 
+  stats:
+    Name: 
+    stats: 
+  spells: []
+  MMPrefab: {fileID: 4897753510267940490, guid: aef7f11e80b46ec48aa3f2d4bef5f9d9, type: 3}
+  MMInstance: {fileID: 0}
+  combatMenu: {fileID: 0}
