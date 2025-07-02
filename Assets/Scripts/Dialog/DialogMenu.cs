@@ -5,6 +5,9 @@ namespace Dialog
 {
     public class DialogMenu : Tools.Menu
     {
+
+        [SerializeField] private DialogManager dialogManager;
+
         [SerializeField] TMP_Text mainDialog;
         [SerializeField] TMP_Text[] options;
 
@@ -16,7 +19,7 @@ namespace Dialog
                 options[i].text = dialog.Value.options[i].text;
         }
 
-        public void Select(int id) => DialogManager.Select(id);
-        public void CloseDialog() => DialogManager.EndDialog();
+        public void Select(int id) => dialogManager.Select(id);
+        public void CloseDialog() => dialogManager.EndDialog();
     }
 }

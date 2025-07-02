@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6220110561636f2499d93b1cc3c3d469, type: 3}
   m_Name: DialogManager
   m_EditorClassIdentifier: 
+  MMPrefab: {fileID: 1462060265892214715, guid: f61d0a2e6dc8cf749969b46164a8b2ed, type: 3}
+  dialogContainer: {fileID: 0}
