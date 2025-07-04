@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Combat
 {
+    [CreateAssetMenu(fileName = "RunChoice", menuName = "Scriptable Objects/Combat/Choices/Run")]
     public class Run : CombatChoice
     {
         const float runProbability = 0.7f;
