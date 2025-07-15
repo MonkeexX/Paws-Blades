@@ -8,7 +8,7 @@ namespace Combat
     public enum StatType { LUST, GLUTTONY, GREED, SLOTH, WRATH, ENVY, PRIDE, COUNT }
 
     [Serializable]
-    public struct CombatStats
+    public class CombatStats : ScriptableObject
     {
         [SerializeField] string Name;
         [SerializeField] List<int> stats;

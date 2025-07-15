@@ -25,7 +25,9 @@ namespace Combat {
                 }
 
                 CombatStats combatStats = new CombatStats(Name, stats);
+                combatStats.name = Name;
                 this.combatStats.Add(combatStats);
+                ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), combatStats);
             }
             Debug.Assert(this.combatStats != null);
             ctx.AddObjectToAsset(Path.GetFileNameWithoutExtension(ctx.assetPath), this);

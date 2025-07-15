@@ -5,6 +5,12 @@ namespace Tools
 {
     public class MenuManager : MonoBehaviour
     {
+        public class Generic<T>
+        {
+            public T value;
+        }
+
+
         public static MenuManager Instance { get; private set; }
 
         [SerializeField] protected int currentID = -1;
@@ -21,14 +27,20 @@ namespace Tools
             Debug.Log("Instance set");
         }
 
-        public void OpenSubMenu(int id)
+        public virtual void OpenSubMenu(int id)
         {
             if (currentID >= 0) transform.GetChild(currentID).gameObject.SetActive(false);
             currentID = id;
             transform.GetChild(currentID).gameObject.SetActive(true);
         }
 
-        public void Display<T1>(T1 toDisplay) => transform.GetChild(currentID).GetComponent<Menu>().Display(toDisplay);
+        public void Display<T>(T toDisplay) => transform.GetChild(currentID).GetComponent<Menu>().Display(toDisplay);
+
+        public void OpenAndDisplay<T>(int id, T toDisplay)
+        {
+            OpenSubMenu(id);
+            Display<T>(toDisplay);
+        }
 
         public void CloseMenu()
         {

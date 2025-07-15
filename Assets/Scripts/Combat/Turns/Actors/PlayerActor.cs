@@ -16,13 +16,13 @@ namespace Combat
 
         public override void PromptChoice()
         {
-            MenuManager.Instance.OpenSubMenu(0);
-            MenuManager.Instance.Display(this);
+            CombatMenuManager.Instance.OpenSubMenu(0);
+            CombatMenuManager.Instance.Display(this);
         }
 
         public override void FinishCombat()
         {
-            MenuManager.Instance.Destroy();
+            CombatMenuManager.Instance.Destroy();
         }
     }
 }
